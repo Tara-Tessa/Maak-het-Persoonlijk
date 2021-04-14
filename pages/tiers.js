@@ -2,7 +2,7 @@ const Tiers = (data) => {
     console.log(data);
     return ( 
         <>
-        <p>tiers</p>
+
         </>
      );
 }

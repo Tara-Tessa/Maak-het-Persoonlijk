@@ -1,17 +1,23 @@
 import Head from 'next/head'
 import Layout from '../components/layout'
-import Tiers from '../components/Tiers';
 
 import styles from '../styles/Home.module.css'
+import Tiers from './tiers';
 
 export default function Home(data) {
   const total = data.data;
-  //console.log(data);
   return (
     <div className={styles.container}>
       <Layout/>
+      <Tiers />
       <p>{total[0].cake.name}</p>
-      <Tiers/>
+{/*       <form>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"/>
+        <label for="message">Message:</label>
+        <input type="text" id="message" name="message"/>
+        <input type="submit" value="Submit"/>
+      </form> */}
     </div>
   )
 }
