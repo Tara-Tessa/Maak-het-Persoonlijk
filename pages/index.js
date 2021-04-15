@@ -27,25 +27,6 @@ export default function Home({data, tiers, cakes, deco, fondants}) {
       setTotals(tmp);
     }
   };
-
-  const onSubmit = async (input) => {
-    console.log(input);
-    const response = await fetch (
-      `${process.env.STRAPI_URL}/totals/`,
-      {
-       method: "POST",
-        body: JSON.stringify(input),
-       headers: {
-         "Content-Type": "application/json",
-        },
-      }
-    );
-     if (response.ok) {
-      const result = await response.json();
-      const tmp = [...totals, result];
-      setTotals(tmp);
-    }
-  }
   
   return (
     <div className={styles.container}>
