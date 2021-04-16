@@ -1,17 +1,17 @@
 const AddCake = ({data, tiers, cakes, deco, fondants, onSubmit}) => {
 
     const handleSubmit = (e) => {
-    console.log(e);
     e.preventDefault();
     const data = {
-      title: e.target.title.value,
-      message: e.target.message.value,
-      tiers: e.target.tiers.value,
+      Title: e.target.title.value,
+      Message: e.target.message.value,
+      tier: e.target.tiers.value,
       cake: e.target.cake.value,
-      decoration: e.target.decoration.value,
+      decoration: e.target.decoration.forEach(item => {if (item.checked){return item.value}}),
       fondant: e.target.fondant.value,
     };
-    e.target.reset();
+    console.log(data);
+    //e.target.reset();
     onSubmit(data);
   };
 
@@ -31,7 +31,7 @@ const AddCake = ({data, tiers, cakes, deco, fondants, onSubmit}) => {
         {tiers.map(tier => (
           <label key={tier.id}>
           {tier.Shape}
-          <input type="radio" name="tiers" value={tier.Shape} required />
+          <input type="radio" name="tiers" value={tier.id} required />
         </label>
         ))}
         </div>
@@ -39,7 +39,7 @@ const AddCake = ({data, tiers, cakes, deco, fondants, onSubmit}) => {
           {cakes.map(cake => (
           <label key={cake.id}>
           {cake.name}
-          <input type="radio" name="cake" value={cake.name} required />
+          <input type="radio" name="cake" value={cake.id} required />
         </label>
         ))}
         </div>
@@ -47,7 +47,7 @@ const AddCake = ({data, tiers, cakes, deco, fondants, onSubmit}) => {
           {deco.map(decoration => (
           <label key={decoration.id}>
           {decoration.Type}
-          <input type="radio" name="decoration" value={decoration.Type} required />
+          <input type="checkbox" name="decoration" value={decoration.id} />
         </label>
         ))}
         </div>
@@ -55,7 +55,7 @@ const AddCake = ({data, tiers, cakes, deco, fondants, onSubmit}) => {
           {fondants.map(fondant => (
           <label key={fondant.id}>
           {fondant.Type}
-          <input type="radio" name="fondant" value={fondant.Type} required />
+          <input type="radio" name="fondant" value={fondant.id} required />
         </label>
         ))}
         </div>

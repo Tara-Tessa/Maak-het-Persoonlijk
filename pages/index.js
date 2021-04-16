@@ -10,9 +10,9 @@ export default function Home({data, tiers, cakes, deco, fondants}) {
 
   const handleSubmit = async (input) => {
     input.article = data.id;
-    console.log(process.env.STRAPI_URL);
+    //console.log(process.env.NEXT_PUBLIC_STRAPI_URL);
     const response = await fetch(
-      `${process.env.STRAPI_URL}/totals`,
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}/totals/`,
       {
         method: "POST",
         body: JSON.stringify(input),
@@ -39,19 +39,19 @@ export default function Home({data, tiers, cakes, deco, fondants}) {
 
 export async function getStaticProps() {
   // Get external data from the file system, API, DB, etc.
-  const res = await fetch(`${process.env.STRAPI_URL}/totals`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/totals`);
   const data = await res.json()
 
-  const resTiers = await fetch(`${process.env.STRAPI_URL}/tiers`);
+  const resTiers = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/tiers`);
   const tiers = await resTiers.json()
 
-  const resCakes = await fetch(`${process.env.STRAPI_URL}/cakes`);
+  const resCakes = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/cakes`);
   const cakes = await resCakes.json()
 
-  const resDeco = await fetch(`${process.env.STRAPI_URL}/decorations`);
+  const resDeco = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/decorations`);
   const deco = await resDeco.json()
 
-  const resFondants = await fetch(`${process.env.STRAPI_URL}/fondants`);
+  const resFondants = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/fondants`);
   const fondants = await resFondants.json()
 
   // The value of the `props` key will be
