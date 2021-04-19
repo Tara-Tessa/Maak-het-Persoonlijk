@@ -1,17 +1,30 @@
+import styles from "./AddCake.module.css";
+
 const AddCake = ({data, tiers, cakes, deco, fondants, onSubmit}) => {
 
     const handleSubmit = (e) => {
+    const test = e.target.decoration;
+    const array = Array.from(test)
+    const deco = array.map(item => {
+      if (item.checked) 
+      {
+        console.log(item.value);
+         return item.value
+      } else {
+        return 0;
+      }
+    })
+    console.log(deco)
     e.preventDefault();
     const data = {
       Title: e.target.title.value,
       Message: e.target.message.value,
       tier: e.target.tiers.value,
       cake: e.target.cake.value,
-      decoration: e.target.decoration.forEach(item => {if (item.checked){return item.value}}),
+      decoration: deco,
       fondant: e.target.fondant.value,
     };
-    console.log(data);
-    //e.target.reset();
+    e.target.reset();
     onSubmit(data);
   };
 
@@ -29,7 +42,7 @@ const AddCake = ({data, tiers, cakes, deco, fondants, onSubmit}) => {
         <div>
         <p>Shape of tiers:</p>
         {tiers.map(tier => (
-          <label key={tier.id}>
+          <label key={tier.id} className={styles[tier.Shape.replace(/\s+/g, '').toLowerCase()]} >
           {tier.Shape}
           <input type="radio" name="tiers" value={tier.id} required />
         </label>
@@ -37,7 +50,7 @@ const AddCake = ({data, tiers, cakes, deco, fondants, onSubmit}) => {
         </div>
         <div>
           {cakes.map(cake => (
-          <label key={cake.id}>
+          <label key={cake.id} className={styles[cake.name.replace(/\s+/g, '').toLowerCase()]}>
           {cake.name}
           <input type="radio" name="cake" value={cake.id} required />
         </label>
@@ -45,7 +58,7 @@ const AddCake = ({data, tiers, cakes, deco, fondants, onSubmit}) => {
         </div>
         <div>
           {deco.map(decoration => (
-          <label key={decoration.id}>
+          <label key={decoration.id} className={styles[decoration.Type.replace(/\s+/g, '').toLowerCase()]}>
           {decoration.Type}
           <input type="checkbox" name="decoration" value={decoration.id} />
         </label>
@@ -53,7 +66,7 @@ const AddCake = ({data, tiers, cakes, deco, fondants, onSubmit}) => {
         </div>
         <div>
           {fondants.map(fondant => (
-          <label key={fondant.id}>
+          <label key={fondant.id} className={styles[fondant.Type.replace(/\s+/g, '').toLowerCase()]}>
           {fondant.Type}
           <input type="radio" name="fondant" value={fondant.id} required />
         </label>

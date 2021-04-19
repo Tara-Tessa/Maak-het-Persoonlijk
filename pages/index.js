@@ -31,6 +31,11 @@ export default function Home({data, tiers, cakes, deco, fondants}) {
   return (
     <div className={styles.container}>
       <Layout/>
+      <ul>
+        {totals.map(total => (
+          <li key={total.id}>{total.cake.name}</li>
+        ))}
+      </ul>
       <p>{totals[0].cake.name}</p>
       <AddCake data={data} tiers={tiers} cakes={cakes} deco={deco} fondants={fondants} onSubmit={handleSubmit} />
     </div>
