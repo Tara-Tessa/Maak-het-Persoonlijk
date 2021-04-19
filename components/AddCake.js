@@ -1,30 +1,52 @@
 import styles from "./AddCake.module.css";
+import { useState } from "react";
+import AddTier from "./AddTier";
+import AddInnerCake from "./AddInnerCake";
+import AddDecoration from "./AddDecoration";
+import AddFondant from "./AddFondant";
+
 
 const AddCake = ({data, tiers, cakes, deco, fondants, onSubmit}) => {
 
+  const [stateTiers, setTiers] = useState(1);
+  const [stateCake, setCake] = useState(1);
+  const [stateDeco, setDeco] = useState([]);
+  const [stateFondant, setFondant] = useState(1);
+
+  console.log(stateTiers)
+  console.log(stateCake)
+  console.log(stateDeco)
+  console.log(stateFondant)
+
+    const handleTierChange = (value) => {
+      setTiers(parseInt(value));
+    }
+
+    const handleCakeChange = (value) => {
+      setCake(parseInt(value))
+    }
+
+    const handleDecoChange = (value) => {
+      const tmp = [...stateDeco];
+      tmp.push(parseInt(value));
+      setDeco(tmp);
+    }
+
+    const handleFondantChange = (value) => {
+      setFondant(parseInt(value));
+    }
+
     const handleSubmit = (e) => {
-    const test = e.target.decoration;
-    const array = Array.from(test)
-    const deco = array.map(item => {
-      if (item.checked) 
-      {
-        console.log(item.value);
-         return item.value
-      } else {
-        return 0;
-      }
-    })
-    console.log(deco)
     e.preventDefault();
     const data = {
       Title: e.target.title.value,
       Message: e.target.message.value,
-      tier: e.target.tiers.value,
-      cake: e.target.cake.value,
-      decoration: deco,
-      fondant: e.target.fondant.value,
+      tier: stateTiers,
+      cake: stateCake,
+      decorations: stateDeco,
+      fondant: stateFondant,
     };
-    e.target.reset();
+    //e.target.reset();
     onSubmit(data);
   };
 
@@ -39,42 +61,16 @@ const AddCake = ({data, tiers, cakes, deco, fondants, onSubmit}) => {
           Message:
           <input type="textarea" name="message" required maxLength="500"/>
         </label>
-        <div>
-        <p>Shape of tiers:</p>
-        {tiers.map(tier => (
-          <label key={tier.id} className={styles[tier.Shape.replace(/\s+/g, '').toLowerCase()]} >
-          {tier.Shape}
-          <input type="radio" name="tiers" value={tier.id} required />
-        </label>
-        ))}
-        </div>
-        <div>
-          {cakes.map(cake => (
-          <label key={cake.id} className={styles[cake.name.replace(/\s+/g, '').toLowerCase()]}>
-          {cake.name}
-          <input type="radio" name="cake" value={cake.id} required />
-        </label>
-        ))}
-        </div>
-        <div>
-          {deco.map(decoration => (
-          <label key={decoration.id} className={styles[decoration.Type.replace(/\s+/g, '').toLowerCase()]}>
-          {decoration.Type}
-          <input type="checkbox" name="decoration" value={decoration.id} />
-        </label>
-        ))}
-        </div>
-        <div>
-          {fondants.map(fondant => (
-          <label key={fondant.id} className={styles[fondant.Type.replace(/\s+/g, '').toLowerCase()]}>
-          {fondant.Type}
-          <input type="radio" name="fondant" value={fondant.id} required />
-        </label>
-        ))}
-        </div>
+        <AddTier tiers={tiers} value={stateTiers} onValueChange={(value) => handleTierChange(value)}/>
+        <AddInnerCake cakes={cakes} value={stateCake} onValueChange={(value) => handleCakeChange(value)}/>
+        <AddDecoration deco={deco} value={stateDeco} onValueChange={(value) => handleDecoChange(value)}/>
+        <AddFondant fondants={fondants} value={stateFondant} onValueChange={(value) => handleFondantChange(value)}/>
         <input type="submit" value="Send" />
       </form>
-
+        <p>{stateTiers}</p>
+        <p>{stateCake}</p>
+        <p>{stateDeco}</p>
+        <p>{stateFondant}</p>
         </>
      );
 }
