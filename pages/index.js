@@ -4,22 +4,18 @@ import { useState } from "react";
 import styles from '../styles/Home.module.css'
 import AddCake from '../components/AddCake'
 import { createClient } from 'contentful'
-import { createEntry } from 'contentful'
+/* import { createClient } from 'contentful-management' */
 
 export default function Home({data, tiers, cakes, deco, fondants}) {
   const [totals, setTotals] = useState(data);
   //console.log(totals, tiers, cakes, deco, fondants);
-  console.log(data.items)
+  console.log(process.env.NEXT_PUBLIC_CONTENTFUL_ACCES_KEY)
 
 
   const handleSubmit = async (input) => {
     console.log(input);
 
-    const contentful = require('contentful-management');
-
-    console.log(contentful)
-
-    const client = contentful.createEntry({
+    const client = createClient({
     accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCES_KEY,
     })
 
