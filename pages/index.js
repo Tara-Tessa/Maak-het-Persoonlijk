@@ -2,17 +2,46 @@ import Head from 'next/head'
 import Layout from '../components/layout'
 import { useState } from "react";
 import styles from '../styles/Home.module.css'
-import AddCake from '../components/AddCake';
+import AddCake from '../components/AddCake'
+import { createClient } from 'contentful'
+import { createEntry } from 'contentful'
 
 export default function Home({data, tiers, cakes, deco, fondants}) {
   const [totals, setTotals] = useState(data);
   //console.log(totals, tiers, cakes, deco, fondants);
+  console.log(data.items)
+
 
   const handleSubmit = async (input) => {
-    input.article = data.id;
-    //console.log(process.env.NEXT_PUBLIC_STRAPI_URL);
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_STRAPI_URL}/totals/`,
+    console.log(input);
+
+    const contentful = require('contentful-management');
+
+    console.log(contentful)
+
+    const client = contentful.createEntry({
+    accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCES_KEY,
+    })
+
+    console.log(client)
+
+    client.getSpace(process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID)
+      .then((space) => space.createEntry({content_type: 'total'}, {
+        fields: {
+          Title: {'en-US' : input.Title},
+          Message: {'en-US' : input.Message},
+          cake: {'en-US' : input.cake},
+          tier: {'en-US' : input.tier},
+          decorations: {'en-US' : input.decorations},
+          fondant: {'en-US' : input.fondant},
+        }
+      }))
+      .then((entry) => console.log(entry))
+      .catch(console.error)
+
+    /* input.article = data.id;
+    const response = await client.createEntry(
+      {content_type: 'total'},
       {
         method: "POST",
         body: JSON.stringify(input),
@@ -25,39 +54,41 @@ export default function Home({data, tiers, cakes, deco, fondants}) {
       const result = await response.json();
       const tmp = [...totals, result];
       setTotals(tmp);
-    }
+    } */
   };
   
   return (
     <div className={styles.container}>
       <Layout/>
       <ul>
-        {totals.map(total => (
-          <li key={total.id}>{total.cake.name}</li>
+        {data.items.map(total => (
+          <li key={total.sys.id}>{total.fields.cake.fields.name}</li>
         ))}
       </ul>
-      <p>{totals[0].cake.name}</p>
-      <AddCake data={data} tiers={tiers} cakes={cakes} deco={deco} fondants={fondants} onSubmit={handleSubmit} />
+     
+      <AddCake tiers={tiers.items} cakes={cakes.items} deco={deco.items} fondants={fondants.items} onSubmit={handleSubmit} />                                                                             
     </div>
   )
 }
 
 export async function getStaticProps() {
   // Get external data from the file system, API, DB, etc.
-  const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/totals`);
-  const data = await res.json()
 
-  const resTiers = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/tiers`);
-  const tiers = await resTiers.json()
+  const client = createClient({
+    space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
+    accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCES_KEY,
+  });
 
-  const resCakes = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/cakes`);
-  const cakes = await resCakes.json()
 
-  const resDeco = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/decorations`);
-  const deco = await resDeco.json()
+  const data = await client.getEntries({content_type: 'total'});
 
-  const resFondants = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/fondants`);
-  const fondants = await resFondants.json()
+  const tiers = await client.getEntries({content_type: 'tiers'});
+
+  const cakes = await client.getEntries({content_type: 'cake'});
+
+  const deco = await client.getEntries({content_type: 'decoration'});
+
+  const fondants = await client.getEntries({content_type: 'fondant'});
 
   // The value of the `props` key will be
   //  passed to the `Home` component
@@ -73,7 +104,7 @@ export async function getStaticProps() {
       tiers: tiers,
       cakes: cakes,
       deco: deco,
-      fondants: fondants
+      fondants: fondants,
     }, // will be passed to the page component as props
   }
 }

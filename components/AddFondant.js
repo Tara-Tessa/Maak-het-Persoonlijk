@@ -5,14 +5,14 @@ const AddFondant = ({fondants, value, onValueChange}) => {
     return ( 
         <div>
           {fondants.map(fondant => (
-          <label key={fondant.id} >
+          <label key={fondant.sys.id} >
             <Image
-        src={"/assets/buttons/"+fondant.Type.replace(/\s+/g, '').toLowerCase()+".svg"}
-        alt={fondant.Type}
+        src={"/assets/buttons/"+fondant.fields.type.replace(/\s+/g, '').toLowerCase()+".svg"}
+        alt={fondant.fields.type}
         width={200}
         height={200}
       />
-          <input className={styles.hidden} type="radio" checked={value===fondant.id} name="fondant" value={fondant.id} required onChange={(e) => onValueChange(e.target.value)}/>
+          <input className={styles.hidden} type="radio" checked={value===fondant.fields.type} name="fondant" value={fondant.fields.type} required onChange={(e) => onValueChange(e.target.value)}/>
         </label>
         ))}
         </div>

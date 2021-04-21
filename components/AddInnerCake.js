@@ -2,17 +2,18 @@ import Image from 'next/image'
 import styles from './global.module.css'
 
 const AddInnerCake = ({cakes, value, onValueChange}) => {
+  console.log(cakes)
     return ( 
         <div>
           {cakes.map(cake => (
-          <label key={cake.id}>
+          <label key={cake.sys.id}>
             <Image
-        src={"/assets/buttons/"+cake.name.replace(/\s+/g, '').toLowerCase()+".svg"}
-        alt={cake.name}
+        src={"/assets/buttons/"+cake.fields.name.replace(/\s+/g, '').toLowerCase()+".svg"}
+        alt={cake.fields.name}
         width={200}
         height={200}
       />
-          <input className={styles.hidden} type="radio" checked={value===cake.id} name="cake" value={cake.id} required onChange={(e) => onValueChange(e.target.value)}/>
+          <input className={styles.hidden} type="radio" checked={value===cake.fields.name} name="cake" value={cake.fields.name} required onChange={(e) => onValueChange(e.target.value)}/>
         </label>
         ))}
         </div>

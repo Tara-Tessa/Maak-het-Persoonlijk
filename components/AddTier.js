@@ -5,14 +5,14 @@ const AddTier = ({tiers, value, onValueChange}) => {
     return ( 
         <div>
         {tiers.map(tier => (
-          <label key={tier.id} >
+          <label key={tier.sys.id} >
             <Image
-        src={"/assets/buttons/"+tier.Shape.replace(/\s+/g, '').toLowerCase()+".svg"}
-        alt={tier.Shape}
+        src={"/assets/buttons/"+tier.fields.shape.replace(/\s+/g, '').toLowerCase()+".svg"}
+        alt={tier.fields.shape}
         width={200}
         height={200}
       />
-          <input className={styles.hidden} type="radio" checked={value===tier.id} name="tiers" value={tier.id} required onChange={(e) => onValueChange(e.target.value)}/>
+          <input className={styles.hidden} type="radio" checked={value===tier.fields.shape} name="tiers" value={tier.fields.shape} required onChange={(e) => onValueChange(e.target.value)}/>
         </label>
         ))}
         </div>

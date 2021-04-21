@@ -8,40 +8,42 @@ import AddFondant from "./AddFondant";
 const fetchForm = async () => {
   const test = await fetch(`https://api.getform.io/v1/forms/8a6b2b59-3f0f-4d2b-a62e-dfb5fd667777?token=8dKAgXGNfEWDDCgodxx5ugCKFwucEgonExfJvMZV7P6T2ucgXO9fTK5ozgtH`)
   const toast = await test.json()
-  console.log(toast.data.submissions);
+  //console.log(toast.data.submissions);
 }
 
 
-const AddCake = ({data, tiers, cakes, deco, fondants, onSubmit}) => {
+const AddCake = ({tiers, cakes, deco, fondants, onSubmit}) => {
 
   fetchForm()
 
-  const [stateTiers, setTiers] = useState(1);
-  const [stateCake, setCake] = useState(1);
+  const [stateTiers, setTiers] = useState("");
+  const [stateCake, setCake] = useState("");
   const [stateDeco, setDeco] = useState([]);
-  const [stateFondant, setFondant] = useState(1);
+  const [stateFondant, setFondant] = useState("");
 
-  console.log(stateTiers)
-  console.log(stateCake)
-  console.log(stateDeco)
-  console.log(stateFondant)
+  //console.log(stateTiers)
+  //console.log(stateCake)
+  //console.log(stateDeco)
+  //console.log(stateFondant)
 
     const handleTierChange = (value) => {
-      setTiers(parseInt(value));
+      setTiers(value);
     }
 
     const handleCakeChange = (value) => {
-      setCake(parseInt(value))
+      setCake(value)
     }
 
     const handleDecoChange = (value) => {
       const tmp = [...stateDeco];
-      tmp.push(parseInt(value));
-      setDeco(tmp);
+      if (!tmp.includes(value)) {
+        tmp.push(value);
+        setDeco(tmp);
+      }
     }
 
     const handleFondantChange = (value) => {
-      setFondant(parseInt(value));
+      setFondant(value);
     }
 
     const handleSubmit = (e) => {
@@ -60,7 +62,7 @@ const AddCake = ({data, tiers, cakes, deco, fondants, onSubmit}) => {
 
     return ( 
         <>
-        <form action="https://getform.io/f/8a6b2b59-3f0f-4d2b-a62e-dfb5fd667777" method="POST" /* onSubmit={(e) => handleSubmit(e)} */>
+        <form onSubmit={(e) => handleSubmit(e)}>
         <label>
           Title:
           <input type="text" name="title" required />
