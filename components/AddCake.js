@@ -5,8 +5,16 @@ import AddInnerCake from "./AddInnerCake";
 import AddDecoration from "./AddDecoration";
 import AddFondant from "./AddFondant";
 
+const fetchForm = async () => {
+  const test = await fetch(`https://api.getform.io/v1/forms/8a6b2b59-3f0f-4d2b-a62e-dfb5fd667777?token=8dKAgXGNfEWDDCgodxx5ugCKFwucEgonExfJvMZV7P6T2ucgXO9fTK5ozgtH`)
+  const toast = await test.json()
+  console.log(toast.data.submissions);
+}
+
 
 const AddCake = ({data, tiers, cakes, deco, fondants, onSubmit}) => {
+
+  fetchForm()
 
   const [stateTiers, setTiers] = useState(1);
   const [stateCake, setCake] = useState(1);
@@ -52,7 +60,7 @@ const AddCake = ({data, tiers, cakes, deco, fondants, onSubmit}) => {
 
     return ( 
         <>
-        <form  onSubmit={(e) => handleSubmit(e)}>
+        <form action="https://getform.io/f/8a6b2b59-3f0f-4d2b-a62e-dfb5fd667777" method="POST" /* onSubmit={(e) => handleSubmit(e)} */>
         <label>
           Title:
           <input type="text" name="title" required />
@@ -65,7 +73,7 @@ const AddCake = ({data, tiers, cakes, deco, fondants, onSubmit}) => {
         <AddInnerCake cakes={cakes} value={stateCake} onValueChange={(value) => handleCakeChange(value)}/>
         <AddDecoration deco={deco} value={stateDeco} onValueChange={(value) => handleDecoChange(value)}/>
         <AddFondant fondants={fondants} value={stateFondant} onValueChange={(value) => handleFondantChange(value)}/>
-        <input type="submit" value="Send" />
+        <button type="submit" value="Send">Send</button>
       </form>
         <p>{stateTiers}</p>
         <p>{stateCake}</p>
