@@ -5,16 +5,11 @@ import AddInnerCake from "./AddInnerCake";
 import AddDecoration from "./AddDecoration";
 import AddFondant from "./AddFondant";
 
-const fetchForm = async () => {
-  const test = await fetch(`https://api.getform.io/v1/forms/8a6b2b59-3f0f-4d2b-a62e-dfb5fd667777?token=8dKAgXGNfEWDDCgodxx5ugCKFwucEgonExfJvMZV7P6T2ucgXO9fTK5ozgtH`)
-  const toast = await test.json()
-  //console.log(toast.data.submissions);
-}
+
 
 
 const AddCake = ({tiers, cakes, deco, fondants, onSubmit}) => {
 
-  fetchForm()
 
   const [stateTiers, setTiers] = useState("");
   const [stateCake, setCake] = useState("");

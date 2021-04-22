@@ -3,19 +3,30 @@ import Layout from '../components/layout'
 import { useState } from "react";
 import styles from '../styles/Home.module.css'
 import AddCake from '../components/AddCake'
-import { createClient } from 'contentful'
-/* import { createClient } from 'contentful-management' */
+import { createClient as deliveryClient } from "contentful";
+import { createClient as managementClient } from "contentful-management";
 
 export default function Home({data, tiers, cakes, deco, fondants}) {
   const [totals, setTotals] = useState(data);
   //console.log(totals, tiers, cakes, deco, fondants);
-  console.log(process.env.NEXT_PUBLIC_CONTENTFUL_ACCES_KEY)
 
 
   const handleSubmit = async (input) => {
     console.log(input);
+    if(input) {
+      const response = await fetch("/api/post", 
+      {
+        method: "PUT",
+        headers: {
+          'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify({input}),
+      });
+      const d = await response.json();
+      console.log(d);
+    }
 
-    const client = createClient({
+    /* const client = contentful.managementClient({
     accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCES_KEY,
     })
 
@@ -33,7 +44,7 @@ export default function Home({data, tiers, cakes, deco, fondants}) {
         }
       }))
       .then((entry) => console.log(entry))
-      .catch(console.error)
+      .catch(console.error) */
 
     /* input.article = data.id;
     const response = await client.createEntry(
@@ -70,9 +81,9 @@ export default function Home({data, tiers, cakes, deco, fondants}) {
 export async function getStaticProps() {
   // Get external data from the file system, API, DB, etc.
 
-  const client = createClient({
-    space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
-    accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCES_KEY,
+  const client = deliveryClient({
+    accessToken: process.env.CONTENTFUL_ACCES_KEY,
+    space: process.env.CONTENTFUL_SPACE_ID,
   });
 
 
