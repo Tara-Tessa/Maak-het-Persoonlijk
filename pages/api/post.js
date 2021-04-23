@@ -3,16 +3,12 @@ import { createClient as deliveryClient } from "contentful";
 export default async (req, res) => {
   if(req.method==="PUT"){
     try {
-        const client = deliveryClient({
-            accessToken: process.env.CONTENTFUL_ACCES_KEY,
-            space: process.env.CONTENTFUL_SPACE_ID,
-  });
-        const response = await fetch(client.getEntries({content_type: 'total'}), 
+        const response = await fetch(`https://api.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master/entries/total`, 
         {
             method:"PUT",
             headers:{
                 "Content-Type": "application/json",
-                accessToken: process.env.CONTENTFUL_ACCES_KEY,
+                "accessToken": process.env.CONTENTFUL_ACCES_KEY,
             },
             body: 
                 JSON.stringify({Title: req.body.input.Title, Message: req.body.input.Message, tier: req.body.input.tier, cake: req.body.input.cake, decorations: req.body.input.decorations}), 
@@ -22,7 +18,7 @@ export default async (req, res) => {
             res.status(200).json({succeeded: true});
         } else {
             const result = await response.json();
-            res.status(200).json({succeeded: false, reason: result.join()});
+            res.status(200).json({succeeded: false, reason: result});
     }
     } catch (e) {
         res.status(500).end(`Something went wrong: ${e}`);
