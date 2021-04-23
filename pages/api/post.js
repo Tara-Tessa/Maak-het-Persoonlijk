@@ -1,8 +1,13 @@
+import { createClient as deliveryClient } from "contentful";
+
 export default async (req, res) => {
-    console.log(fetch(`/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master/entries/total`))
   if(req.method==="PUT"){
     try {
-        const response = await fetch(`/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master/entries/total`, 
+        const client = deliveryClient({
+            accessToken: process.env.CONTENTFUL_ACCES_KEY,
+            space: process.env.CONTENTFUL_SPACE_ID,
+  });
+        const response = await fetch(client.getEntries({content_type: 'total'}), 
         {
             method:"PUT",
             headers:{
