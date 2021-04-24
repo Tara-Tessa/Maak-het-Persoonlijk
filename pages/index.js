@@ -5,6 +5,7 @@ import styles from '../styles/Home.module.css'
 import AddCake from '../components/AddCake'
 import { createClient as deliveryClient } from "contentful";
 import { createClient as managementClient } from "contentful-management";
+import { getPosts } from './api/post'
 
 export default function Home({data, tiers, cakes, deco, fondants}) {
   const [totals, setTotals] = useState(data);
@@ -14,7 +15,7 @@ export default function Home({data, tiers, cakes, deco, fondants}) {
   const handleSubmit = async (input) => {
     console.log(input);
     if(input) {
-      const response = await fetch("/api/post", 
+      const response = await fetch(`/api/post`, 
       {
         method: "PUT",
         headers: {

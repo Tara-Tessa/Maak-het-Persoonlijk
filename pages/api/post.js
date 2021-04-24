@@ -1,6 +1,22 @@
 import { createClient as deliveryClient } from "contentful";
 
-export default async (req, res) => {
+export const getPosts = async (limit) => {
+    console.log("voer iets uit");
+    console.log(process.env.CONTENTFUL_SPACE_ID);
+    console.log(process.env.CONTENTFUL_ACCES_KEY);
+  const client = deliveryClient({
+    space: process.env.CONTENTFUL_SPACE_ID,
+    environment: "master",
+    accessToken: process.env.CONTENTFUL_ACCES_KEY,
+  });
+
+  return await client
+    .getPosts({
+      content_type: "total"
+    })
+    .catch(console.error);
+};
+/* export default async (req, res) => {
   if(req.method==="PUT"){
     try {
         const response = await fetch(`https://api.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master/entries/total`, 
@@ -8,11 +24,12 @@ export default async (req, res) => {
             method:"PUT",
             headers:{
                 "Content-Type": "application/json",
-                "accessToken": process.env.CONTENTFUL_ACCES_KEY,
+                accessToken: process.env.CONTENTFUL_ACCES_KEY,
             },
             body: 
                 JSON.stringify({Title: req.body.input.Title, Message: req.body.input.Message, tier: req.body.input.tier, cake: req.body.input.cake, decorations: req.body.input.decorations}), 
         });
+        console.log(response);
         
         if (response.status === 201) {
             res.status(200).json({succeeded: true});
@@ -28,3 +45,4 @@ export default async (req, res) => {
       res.status(405).end(`Method ${method} Not allowed`);
   }
 }
+ */
