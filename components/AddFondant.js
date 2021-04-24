@@ -9,8 +9,8 @@ const AddFondant = ({fondants, value, onValueChange}) => {
             <Image
         src={"/assets/buttons/"+fondant.fields.type.replace(/\s+/g, '').toLowerCase()+".svg"}
         alt={fondant.fields.type}
-        width={200}
-        height={200}
+        width={150}
+        height={150}
       />
           <input className={styles.hidden} type="radio" checked={value===fondant.fields.type} name="fondant" value={fondant.fields.type} required onChange={(e) => onValueChange(e.target.value)}/>
         </label>

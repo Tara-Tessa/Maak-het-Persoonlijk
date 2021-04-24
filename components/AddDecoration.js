@@ -9,8 +9,8 @@ const AddDecoration = ({deco, value, onValueChange}) => {
             <Image
         src={"/assets/buttons/"+decoration.fields.type.replace(/\s+/g, '').toLowerCase()+".svg"}
         alt={decoration.fields.type}
-        width={200}
-        height={200}
+        width={150}
+        height={150}
       />
           <input className={styles.hidden} type="checkbox" checked={value===decoration.fields.type} name="decoration" value={decoration.fields.type} onChange={(e) => onValueChange(e.target.value)} />
         </label>
