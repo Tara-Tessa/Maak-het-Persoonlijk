@@ -1,6 +1,56 @@
-import { createClient as deliveryClient } from "contentful";
+import { createClient as managementClient } from "contentful-management";
 
-export const getPosts = async (limit) => {
+export default async (req, res) => {
+  console.log(req);
+  if (req.method === "POST") {
+    try{
+      const client = managementClient({
+        accessToken: process.env.CONTENTFUL_ACCES_KEY,
+      });
+
+      const response = client.getSpace(process.env.CONTENTFUL_SPACE_ID)
+      .then((space) => space.getEnvironment(process.env.CONTENTFUL_ENV))
+      .then((environment) => 
+      environment.createEngry("total", {
+        fields: {
+          Title: {
+            "en-US": req.body.input.Title
+          },
+          Message: {
+            "en-US": req.body.input.Message
+          },
+          cake: {
+            "en-US": req.body.input.cake
+          },
+          decorations: {
+            "en-US": req.body.input.decorations
+          },
+          fondant: {
+            "en-US": req.body.input.fondant
+          },
+          tier: {
+            "en-US": req.body.input.tier
+          },
+        },
+      })).then((entry) => entry.publish());
+
+      if (response.status === 201) {
+            res.status(200).json({succeeded: true});
+      } else {
+            const result = await response;
+            res.status(200).json({succeeded: false, reason: result});
+      }
+    } catch (e) {
+      res.status(500).end(`Something went wrong: ${e}`);
+    }
+  } else {
+    res.setHeader("Allow", ["POST"]);
+    res.status(405).end(`Method ${method} Not Allowed`);
+  }
+}
+
+
+/* export const getPosts = async (limit) => {
     console.log("voer iets uit");
     console.log(process.env.CONTENTFUL_SPACE_ID);
     console.log(process.env.CONTENTFUL_ACCES_KEY);
@@ -15,7 +65,7 @@ export const getPosts = async (limit) => {
       content_type: "total"
     })
     .catch(console.error);
-};
+}; */
 /* export default async (req, res) => {
   if(req.method==="PUT"){
     try {

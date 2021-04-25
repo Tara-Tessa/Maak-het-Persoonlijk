@@ -17,7 +17,7 @@ export default function Home({data, tiers, cakes, deco, fondants}) {
     if(input) {
       const response = await fetch(`/api/post`, 
       {
-        method: "PUT",
+        method: "POST",
         headers: {
           'Content-Type' : 'application/json'
         },
@@ -26,43 +26,6 @@ export default function Home({data, tiers, cakes, deco, fondants}) {
       const d = await response.json();
       console.log(d);
     }
-
-    /* const client = contentful.managementClient({
-    accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCES_KEY,
-    })
-
-    console.log(client)
-
-    client.getSpace(process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID)
-      .then((space) => space.createEntry({content_type: 'total'}, {
-        fields: {
-          Title: {'en-US' : input.Title},
-          Message: {'en-US' : input.Message},
-          cake: {'en-US' : input.cake},
-          tier: {'en-US' : input.tier},
-          decorations: {'en-US' : input.decorations},
-          fondant: {'en-US' : input.fondant},
-        }
-      }))
-      .then((entry) => console.log(entry))
-      .catch(console.error) */
-
-    /* input.article = data.id;
-    const response = await client.createEntry(
-      {content_type: 'total'},
-      {
-        method: "POST",
-        body: JSON.stringify(input),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    if (response.ok) {
-      const result = await response.json();
-      const tmp = [...totals, result];
-      setTotals(tmp);
-    } */
   };
   
   return (

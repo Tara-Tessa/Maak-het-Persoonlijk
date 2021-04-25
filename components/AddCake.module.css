@@ -188,11 +188,12 @@
     background-image: url(../assets/cakebuilder/meringuewithstrawberries_stairs.svg);
     background-position-x: center;
     background-position-y: bottom;
-    width: 20rem;
-    height: 20rem;
+    width: 50rem;
+    height: 50rem;
     background-repeat: no-repeat;
     grid-column: 1;
     grid-row: 1;
+    margin-top: 1rem;
 }
 
 .meringuewithcherries_straight{
@@ -210,11 +211,12 @@
     background-image: url(../assets/cakebuilder/meringuewithcherries_stairs.svg);
     background-position-x: center;
     background-position-y: bottom;
-    width: 20rem;
-    height: 20rem;
+    width: 50rem;
+    height: 50rem;
     background-repeat: no-repeat;
     grid-column: 1;
     grid-row: 1;
+    margin-top: 1rem;
 }
 
 .candles_straight{
@@ -226,6 +228,7 @@
     background-repeat: no-repeat;
     grid-column: 1;
     grid-row: 1;
+    margin-top: 1rem;
 }
 
 .candles_stairs{

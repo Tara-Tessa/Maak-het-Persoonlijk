@@ -5,9 +5,6 @@ import AddInnerCake from "./AddInnerCake";
 import AddDecoration from "./AddDecoration";
 import AddFondant from "./AddFondant";
 
-
-
-
 const AddCake = ({tiers, cakes, deco, fondants, onSubmit}) => {
 
 
@@ -24,58 +21,92 @@ const AddCake = ({tiers, cakes, deco, fondants, onSubmit}) => {
     if (stateDeco) {
     const deco = value
     if (deco == "Candles"){
-                if (stateTiers == "Straight"){
-                  setCandles("candles_straight");
-                } else {
-                  setCandles("candles_stairs");
-                }
-              } else if (deco.includes("Meringue")){
-                if (stateTiers == "Straight" && deco== "Meringue with Strawberries"){
-                  setMeringue("meringuewithstrawberries_straight");
-                } else if (stateTiers == "Straight" && deco== "Meringue with Cherries"){
-                  setMeringue("meringuewithcherries_straight");
-                } else if (stateTiers == "Stairs" && deco== "Meringue with Strawberries"){
-                  setMeringue("meringuewithstrawberries_stairs");
-                } else {
-                  setMeringue("meringuewithcherries_stairs");
-                }
-              } else if (deco == "Icing") {
-                if (stateTiers == "Stairs") {
-                  if (stateFondant == "Pistachio") {
-                    setIcing("icing_pistachio_stairs");
-                  } else if (stateFondant == "Blueberry") {
-                    setIcing("icing_blueberry_stairs");
-                  } else if (stateFondant == "Vanilla") {
-                    setIcing("icing_vanilla_stairs");
-                  } else if (stateFondant == "Strawberry") {
-                    setIcing("icing_strawberry_stairs");
-                  } else {
-                    setIcing("icing_chocolate_stairs");
-                  }
-                } else {
-                  if (stateFondant == "Pistachio") {
-                    setIcing("icing_pistachio_straight");
-                  } else if (stateFondant == "Blueberry") {
-                    setIcing("icing_blueberry_straight");
-                  } else if (stateFondant == "Vanilla") {
-                    setIcing("icing_vanilla_straight");
-                  } else if (stateFondant == "Strawberry") {
-                    setIcing("icing_strawberry_straight");
-                  } else {
-                    setIcing("icing_chocolate_straight");
-                  }
-                }
-              } else if (deco == "Butter Cream") {
-                setButtercream("buttercream");
-              }
+      if (stateTiers == "Straight"){
+        setCandles("candles_straight");
+      } else {
+        setCandles("candles_stairs");
+      }
+    } else if (deco.includes("Meringue")){
+      if (stateTiers == "Straight" && deco== "Meringue with Strawberries"){
+        setMeringue("meringuewithstrawberries_straight");
+      } else if (stateTiers == "Straight" && deco== "Meringue with Cherries"){
+        setMeringue("meringuewithcherries_straight");
+      } else if (stateTiers == "Stairs" && deco== "Meringue with Strawberries"){
+        setMeringue("meringuewithstrawberries_stairs");
+      } else {
+        setMeringue("meringuewithcherries_stairs");
+      }
+    } else if (deco == "Icing") {
+      if (stateTiers == "Stairs") {
+        if (stateFondant == "Pistachio") {
+          setIcing("icing_pistachio_stairs");
+        } else if (stateFondant == "Blueberry") {
+          setIcing("icing_blueberry_stairs");
+        } else if (stateFondant == "Vanilla") {
+          setIcing("icing_vanilla_stairs");
+        } else if (stateFondant == "Strawberry") {
+          setIcing("icing_strawberry_stairs");
+        } else {
+          setIcing("icing_chocolate_stairs");
+        }
+      } else {
+        if (stateFondant == "Pistachio") {
+          setIcing("icing_pistachio_straight");
+        } else if (stateFondant == "Blueberry") {
+          setIcing("icing_blueberry_straight");
+        } else if (stateFondant == "Vanilla") {
+          setIcing("icing_vanilla_straight");
+        } else if (stateFondant == "Strawberry") {
+          setIcing("icing_strawberry_straight");
+        } else {
+          setIcing("icing_chocolate_straight");
+        }
+      }
+    } else if (deco == "Butter Cream") {
+      setButtercream("buttercream");
+    }
   }
   }
     const handleTierChange = (value) => {
       setTiers(value);
+      console.log(value);
+      if (candles) {
+        if (value == "Straight"){
+        setCandles("candles_straight");
+      } else {
+        setCandles("candles_stairs");
+      }
+      } 
+      
+      if (meringue) {
+        //console.log(meringue);
+        if (value == "Straight" && meringue=="meringuewithstrawberries_stairs"){
+        setMeringue("meringuewithstrawberries_straight");
+      } else if (value == "Straight" && meringue=="meringuewithcherries_stairs"){
+        setMeringue("meringuewithcherries_straight");
+      } else if (value == "Stairs" && meringue=="meringuewithstrawberries_straight"){
+        setMeringue("meringuewithstrawberries_stairs");
+      } else {
+        setMeringue("meringuewithcherries_stairs");
+      }
+      } 
+      
+      if (icing){
+        console.log(icing.split("_")[2]);
+        const icing_tier = icing.split("_")[2];
+        const icing_color = icing.split("_")[1];
+        if (value == "Straight" && icing_tier == "stairs"){
+          setIcing(`icing_${icing_color}_straight`);
+        } else if (value == "Stairs" && icing_tier == "straight") {
+          setIcing(`icing_${icing_color}_stairs`);
+        }
+      }
+
     }
 
     const handleCakeChange = (value) => {
       setCake(value)
+      changeClasses(value);
     }
 
     const handleDecoChange = (value) => {
@@ -83,7 +114,6 @@ const AddCake = ({tiers, cakes, deco, fondants, onSubmit}) => {
         if(tmp.includes("Meringue with Cherries") && value == "Meringue with Strawberries") {
           console.log("Cherries already in");
           const index = tmp.indexOf("Meringue with Cherries");
-          console.log(index);
           tmp.splice(index,1);
           tmp.push(value);
           setDeco(tmp);
@@ -104,20 +134,15 @@ const AddCake = ({tiers, cakes, deco, fondants, onSubmit}) => {
           }
           changeClasses(value);
         }
-      /* if (!tmp.includes(value)) {
-        if(tmp.includes("Mirengue with Cherries")) {
-          console.log("Cherries")
-        } else if (tmp.includes("Mirengue with Strawberries")){
-          console.log("Strawberries")
-        } else {
-          tmp.push(value);
-          setDeco(tmp);
-        }
-      } */
     }
 
     const handleFondantChange = (value) => {
       setFondant(value);
+      changeClasses(value);
+      console.log(value);
+      if (icing){
+          setIcing(`icing_${value.replace(/\s+/g, '').toLowerCase()}_straight`);
+      }
     }
 
     const handleSubmit = (e) => {
@@ -130,7 +155,6 @@ const AddCake = ({tiers, cakes, deco, fondants, onSubmit}) => {
       decorations: stateDeco,
       fondant: stateFondant,
     };
-    //e.target.reset();
     onSubmit(data);
   };
 
