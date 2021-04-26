@@ -77,7 +77,7 @@ export async function getStaticProps() {
       cakes: cakes,
       deco: deco,
       fondants: fondants,
-      revalidate: 1
+      //revalidate: 1
     }, // will be passed to the page component as props
   }
 }

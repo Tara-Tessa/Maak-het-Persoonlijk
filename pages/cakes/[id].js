@@ -5,7 +5,7 @@ import Layout from "../../components/layout";
 import copy from 'copy-to-clipboard'
 
 const Cake = (cake) => {
-  if (!cake) return <div>Loading...</div>
+  //if (!cake) return <div>Loading...</div>
 
     const [candles, setCandles] = useState("");
     const [meringue, setMeringue] = useState("");
@@ -118,7 +118,7 @@ export const getStaticPaths = async () => {
 
   return {
     paths,
-    fallback: true,
+    //fallback: true,
   };
 }
 
@@ -128,9 +128,9 @@ export const getStaticProps = async ({params}) => {
         'sys.id' : params.id
     })
 
-/*     console.log(items);
+    console.log(items);
 
-    if (!items.length) {
+    /* if (!items.length) {
       return {
         redirect: {
           destination: '/',
@@ -141,6 +141,6 @@ export const getStaticProps = async ({params}) => {
 
     return {
         props: { cake: items[0]},
-        revalidate: 1
+        //revalidate: 1
     }
 }
