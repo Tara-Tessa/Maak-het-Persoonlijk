@@ -127,6 +127,7 @@ export const getStaticProps = async ({params}) => {
     })
 
     return {
-        props: { cake: items[0]}
+        props: { cake: items[0]},
+        revalidate: 1
     }
 }
