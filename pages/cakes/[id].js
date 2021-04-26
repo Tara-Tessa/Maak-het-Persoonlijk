@@ -86,10 +86,12 @@ const Cake = (cake) => {
             <h2 className={styles.title}>{cake.cake.fields.title}</h2>
             <p className={styles.message}>{cake.cake.fields.message}</p>
             <p className={styles.clickcopy}>Click to copy and send it to your Birthday Friend!</p>
+            <div className={styles.link}>
             <a href="javascript:void(0)"
          onClick={() => {
-           copy(`https://maak-het-persoonlijk-le13tej7v-tara-tessa.vercel.app/cakes/${cake.cake.sys.id}`)
-         }} className={styles.link}>{`https://maak-het-persoonlijk-le13tej7v-tara-tessa.vercel.app/cakes/${cake.cake.sys.id}`}</a>
+           copy(`https://maak-het-persoonlijk-lime.vercel.app/cakes/${cake.cake.sys.id}`)
+         }} >{`https://maak-het-persoonlijk-lime.vercel.app/cakes/${cake.cake.sys.id}`}</a>
+         </div>
             </div>
         </div>
         </div>
