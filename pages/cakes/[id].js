@@ -5,8 +5,9 @@ import Layout from "../../components/layout";
 import copy from 'copy-to-clipboard'
 
 const Cake = (cake) => {
-  if (!cake) return <div>Loading...</div>
-
+  if (!cake) {
+    return <div>Loading...</div>
+  } else {
     const [candles, setCandles] = useState("");
     const [meringue, setMeringue] = useState("");
     const [icing, setIcing] = useState("");
@@ -98,6 +99,8 @@ const Cake = (cake) => {
         </div>
         </div>
      );
+
+  }
 }
  
 export default Cake;
