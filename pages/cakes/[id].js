@@ -88,8 +88,8 @@ const Cake = (cake) => {
             <p className={styles.clickcopy}>Click to copy and send it to your Birthday Friend!</p>
             <a href="javascript:void(0)"
          onClick={() => {
-           copy(`http://localhost:3000/cakes/${cake.cake.sys.id}`)
-         }} className={styles.link}>{`http://localhost:3000/cakes/${cake.cake.sys.id}`}</a>
+           copy(`https://maak-het-persoonlijk-le13tej7v-tara-tessa.vercel.app/cakes/${cake.cake.sys.id}`)
+         }} className={styles.link}>{`https://maak-het-persoonlijk-le13tej7v-tara-tessa.vercel.app/cakes/${cake.cake.sys.id}`}</a>
             </div>
         </div>
         </div>
