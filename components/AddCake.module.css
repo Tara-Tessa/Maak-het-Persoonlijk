@@ -10,7 +10,6 @@
 .addCake{
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 
 .plateau {
@@ -25,6 +24,7 @@
     grid-template-rows: 100%;
     margin-left: 2rem;
     margin-bottom: 10rem;
+    transform: translateY(-10rem);
 }
 
 .container {
@@ -350,4 +350,19 @@
     background-repeat: no-repeat;
     grid-column: 1;
     grid-row: 1;
+}
+
+.text{
+  color: #551f0b;
+    font-family: edita, serif;
+    font-weight: 400;
+    font-style: normal;
+    width: 15rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.form{
+    margin-bottom: 1rem;
 }

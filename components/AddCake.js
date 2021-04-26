@@ -161,14 +161,18 @@ const AddCake = ({tiers, cakes, deco, fondants, onSubmit}) => {
     return ( 
         <div className={styles.addCake}>
         <form onSubmit={(e) => handleSubmit(e)}>
-        <label>
+        <div className={styles.form}>
+        <label className={styles.text}>
           Title:
           <input type="text" name="title" required />
         </label>
-        <label>
+        </div>
+        <div className={styles.form}>
+        <label className={styles.text}>
           Message:
           <input type="textarea" name="message" required maxLength="500"/>
         </label>
+        </div>
         <AddTier tiers={tiers} value={stateTiers} onValueChange={(value) => handleTierChange(value)}/>
         <AddInnerCake cakes={cakes} value={stateCake} onValueChange={(value) => handleCakeChange(value)}/>
         <AddDecoration deco={deco} value={stateDeco} onValueChange={(value) => handleDecoChange(value)}/>

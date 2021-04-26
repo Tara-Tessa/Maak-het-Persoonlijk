@@ -2,6 +2,7 @@ import { createClient as deliveryClient } from "contentful";
 import styles from "./cake.module.css";
 import React, { useState, useEffect } from 'react';
 import Layout from "../../components/layout";
+import copy from 'copy-to-clipboard'
 
 const Cake = (cake) => {
     const [candles, setCandles] = useState("");
@@ -9,7 +10,8 @@ const Cake = (cake) => {
     const [icing, setIcing] = useState("");
     const [buttercream, setButtercream] = useState("");
 
-    console.log(cake);
+    console.log(cake)
+
     const stateTiers = cake.cake.fields.tier;
     const stateFondant = cake.cake.fields.fondant;
     const decoration = cake.cake.fields.decorations;
@@ -68,8 +70,7 @@ const Cake = (cake) => {
     return ( 
         <div className={styles.container}>
             <Layout />
-            <p>{cake.cake.fields.title}</p>
-            <p>{cake.cake.fields.message}</p>
+            <div className={styles.detail}>
             <div className={styles.plateau}>
               <div className={styles.box}>
                   <div className={styles[cake.cake.fields.fondant.replace(/\s+/g, '').toLowerCase()]}></div>
@@ -81,6 +82,16 @@ const Cake = (cake) => {
                   <div className={styles[buttercream]}></div>
               </div>
             </div>
+            <div className={styles.text}>
+            <h2 className={styles.title}>{cake.cake.fields.title}</h2>
+            <p className={styles.message}>{cake.cake.fields.message}</p>
+            <p className={styles.clickcopy}>Click to copy and send it to your Birthday Friend!</p>
+            <a href="javascript:void(0)"
+         onClick={() => {
+           copy(`http://localhost:3000/cakes/${cake.cake.sys.id}`)
+         }} className={styles.link}>{`http://localhost:3000/cakes/${cake.cake.sys.id}`}</a>
+            </div>
+        </div>
         </div>
      );
 }

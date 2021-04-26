@@ -4,8 +4,7 @@ import { useState } from "react";
 import styles from '../styles/Home.module.css'
 import AddCake from '../components/AddCake'
 import { createClient as deliveryClient } from "contentful";
-import { createClient as managementClient } from "contentful-management";
-import { getPosts } from './api/post'
+import Link from "next/link";
 
 export default function Home({data, tiers, cakes, deco, fondants}) {
   const [totals, setTotals] = useState(data);
@@ -31,13 +30,15 @@ export default function Home({data, tiers, cakes, deco, fondants}) {
   return (
     <div className={styles.container}>
       <Layout/>
-
-        {data.items.map(total => (
-          <a href={`/cakes/${total.sys.id}`} key={total.sys.id}>{total.fields.cake}</a>
-        ))}
-
-     
       <AddCake tiers={tiers.items} cakes={cakes.items} deco={deco.items} fondants={fondants.items} onSubmit={handleSubmit} />                                                                             
+      <div className={styles.previous}>
+      {data.items.map(total => (
+          <a key={total.sys.id} href={`/cakes/${total.sys.id}`}>
+            <div className={styles.others}></div>
+            <p className={styles.text}>{total.fields.title}</p>
+            </a>
+        ))}
+      </div>
     </div>
   )
 }
