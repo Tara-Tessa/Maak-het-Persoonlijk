@@ -5,6 +5,8 @@ import Layout from "../../components/layout";
 import copy from 'copy-to-clipboard'
 
 const Cake = (cake) => {
+  if (!cake) return <div>Loading...</div>
+
     const [candles, setCandles] = useState("");
     const [meringue, setMeringue] = useState("");
     const [icing, setIcing] = useState("");
@@ -116,7 +118,7 @@ export const getStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 }
 
