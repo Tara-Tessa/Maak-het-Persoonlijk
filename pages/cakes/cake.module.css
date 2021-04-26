@@ -1,0 +1,346 @@
+.container{
+    min-height: 100vh;
+  padding: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  background-color: #fffba4;
+}
+
+.plateau {
+    background-image: url(../../assets/plateau.svg);
+    background-position-x: center;
+    background-position-y: bottom;
+    width: 50rem;
+    height: 50rem;
+    background-repeat: no-repeat;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 100%;
+    margin-left: 2rem;
+    margin-bottom: 10rem;
+}
+
+.box {
+    background-position-x: center;
+    background-position-y: bottom;
+    width: 50rem;
+    height: 50rem;
+    background-repeat: no-repeat;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 100%;
+    margin-left: 2rem;
+    margin-bottom: 10rem;
+    transform: translate(-2.1rem, -9.4rem);
+}
+
+.pistachio{
+    background-image: url(../../assets/cakebuilder/pistachio.svg);
+    background-position-x: center;
+    background-position-y: bottom;
+    width: 50rem;
+    height: 50rem;
+    background-repeat: no-repeat;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.blueberry{
+    background-image: url(../../assets/cakebuilder/blueberry.svg);
+    background-position-x: center;
+    background-position-y: bottom;
+    width: 50rem;
+    height: 50rem;
+    background-repeat: no-repeat;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.vanilla{
+    background-image: url(../../assets/cakebuilder/vanilla.svg);
+    background-position-x: center;
+    background-position-y: bottom;
+    width: 50rem;
+    height: 50rem;
+    background-repeat: no-repeat;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.strawberry{
+    background-image: url(../../assets/cakebuilder/strawberry.svg);
+    background-position-x: center;
+    background-position-y: bottom;
+    width: 50rem;
+    height: 50rem;
+    background-repeat: no-repeat;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.chocolate{
+    background-image: url(../../assets/cakebuilder/chocolate.svg);
+    background-position-x: center;
+    background-position-y: bottom;
+    width: 50rem;
+    height: 50rem;
+    background-repeat: no-repeat;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.stairs {
+    background-image: url(../../assets/cakebuilder/stairs.svg);
+    background-position-x: center;
+    background-position-y: bottom;
+    width: 50rem;
+    height: 50rem;
+    background-repeat: no-repeat;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.straight {
+    background-image: url(../../assets/cakebuilder/straight.svg);
+    background-position-x: center;
+    background-position-y: bottom;
+    width: 50rem;
+    height: 50rem;
+    background-repeat: no-repeat;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.vanillacake{
+    background-image: url(../../assets/cakebuilder/vanillacake.svg);
+    background-position-x: center;
+    background-position-y: bottom;
+    width: 50rem;
+    height: 50rem;
+    background-repeat: no-repeat;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.confetticake{
+    background-image: url(../../assets/cakebuilder/confetticake.svg);
+    background-position-x: center;
+    background-position-y: bottom;
+    width: 50rem;
+    height: 50rem;
+    background-repeat: no-repeat;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.redvelvetcake{
+    background-image: url(../../assets/cakebuilder/redvelvetcake.svg);
+    background-position-x: center;
+    background-position-y: bottom;
+    width: 50rem;
+    height: 50rem;
+    background-repeat: no-repeat;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.chocolatecake{
+    background-image: url(../../assets/cakebuilder/chocolatecake.svg);
+    background-position-x: center;
+    background-position-y: bottom;
+    width: 50rem;
+    height: 50rem;
+    background-repeat: no-repeat;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.buttercream{
+    background-image: url(../../assets/cakebuilder/buttercream.svg);
+    background-position-x: center;
+    background-position-y: bottom;
+    width: 50rem;
+    height: 50rem;
+    background-repeat: no-repeat;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.meringuewithstrawberries_straight{
+    background-image: url(../../assets/cakebuilder/meringuewithstrawberries_straight.svg);
+    background-position-x: center;
+    background-position-y: bottom;
+    width: 50rem;
+    height: 50rem;
+    background-repeat: no-repeat;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.meringuewithstrawberries_stairs{
+    background-image: url(../../assets/cakebuilder/meringuewithstrawberries_stairs.svg);
+    background-position-x: center;
+    background-position-y: bottom;
+    width: 50rem;
+    height: 50rem;
+    background-repeat: no-repeat;
+    grid-column: 1;
+    grid-row: 1;
+    margin-top: 1rem;
+}
+
+.meringuewithcherries_straight{
+    background-image: url(../../assets/cakebuilder/meringuewithcherries_straight.svg);
+    background-position-x: center;
+    background-position-y: bottom;
+    width: 50rem;
+    height: 50rem;
+    background-repeat: no-repeat;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.meringuewithcherries_stairs{
+    background-image: url(../../assets/cakebuilder/meringuewithcherries_stairs.svg);
+    background-position-x: center;
+    background-position-y: bottom;
+    width: 50rem;
+    height: 50rem;
+    background-repeat: no-repeat;
+    grid-column: 1;
+    grid-row: 1;
+    margin-top: 1rem;
+}
+
+.candles_straight{
+    background-image: url(../../assets/cakebuilder/candles_straight.svg);
+    background-position-x: center;
+    background-position-y: bottom;
+    width: 50rem;
+    height: 50rem;
+    background-repeat: no-repeat;
+    grid-column: 1;
+    grid-row: 1;
+    margin-top: 1rem;
+}
+
+.candles_stairs{
+    background-image: url(../../assets/cakebuilder/candles_stairs.svg);
+    background-position-x: center;
+    background-position-y: bottom;
+    width: 50rem;
+    height: 50rem;
+    background-repeat: no-repeat;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.icing_pistachio_stairs {
+    background-image: url(../../assets/cakebuilder/icing_pistachio_stairs.svg);
+    background-position-x: center;
+    background-position-y: bottom;
+    width: 50rem;
+    height: 50rem;
+    background-repeat: no-repeat;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.icing_pistachio_straight {
+    background-image: url(../../assets/cakebuilder/icing_pistachio_straight.svg);
+    background-position-x: center;
+    background-position-y: bottom;
+    width: 50rem;
+    height: 50rem;
+    background-repeat: no-repeat;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.icing_blueberry_stairs {
+    background-image: url(../../assets/cakebuilder/icing_blueberry_stairs.svg);
+    background-position-x: center;
+    background-position-y: bottom;
+    width: 50rem;
+    height: 50rem;
+    background-repeat: no-repeat;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.icing_blueberry_straight {
+    background-image: url(../../assets/cakebuilder/icing_blueberry_straight.svg);
+    background-position-x: center;
+    background-position-y: bottom;
+    width: 50rem;
+    height: 50rem;
+    background-repeat: no-repeat;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.icing_vanilla_stairs {
+    background-image: url(../../assets/cakebuilder/icing_vanilla_stairs.svg);
+    background-position-x: center;
+    background-position-y: bottom;
+    width: 50rem;
+    height: 50rem;
+    background-repeat: no-repeat;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.icing_vanilla_straight {
+    background-image: url(../../assets/cakebuilder/icing_vanilla_straight.svg);
+    background-position-x: center;
+    background-position-y: bottom;
+    width: 50rem;
+    height: 50rem;
+    background-repeat: no-repeat;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.icing_strawberry_stairs {
+    background-image: url(../../assets/cakebuilder/icing_strawberry_stairs.svg);
+    background-position-x: center;
+    background-position-y: bottom;
+    width: 50rem;
+    height: 50rem;
+    background-repeat: no-repeat;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.icing_strawberry_straight {
+    background-image: url(../../assets/cakebuilder/icing_strawberry_straight.svg);
+    background-position-x: center;
+    background-position-y: bottom;
+    width: 50rem;
+    height: 50rem;
+    background-repeat: no-repeat;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.icing_chocolate_stairs {
+    background-image: url(../../assets/cakebuilder/icing_chocolate_stairs.svg);
+    background-position-x: center;
+    background-position-y: bottom;
+    width: 50rem;
+    height: 50rem;
+    background-repeat: no-repeat;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.icing_chocolate_straight {
+    background-image: url(../../assets/cakebuilder/icing_chocolate_straight.svg);
+    background-position-x: center;
+    background-position-y: bottom;
+    width: 50rem;
+    height: 50rem;
+    background-repeat: no-repeat;
+    grid-column: 1;
+    grid-row: 1;
+}

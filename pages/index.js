@@ -10,7 +10,7 @@ import { getPosts } from './api/post'
 export default function Home({data, tiers, cakes, deco, fondants}) {
   const [totals, setTotals] = useState(data);
   //console.log(totals, tiers, cakes, deco, fondants);
-
+  console.log(totals)
 
   const handleSubmit = async (input) => {
     console.log(input);
@@ -31,11 +31,11 @@ export default function Home({data, tiers, cakes, deco, fondants}) {
   return (
     <div className={styles.container}>
       <Layout/>
-      <ul>
+
         {data.items.map(total => (
-          <li key={total.sys.id}>{total.fields.cake.fields.name}</li>
+          <a href={`/cakes/${total.sys.id}`} key={total.sys.id}>{total.fields.cake}</a>
         ))}
-      </ul>
+
      
       <AddCake tiers={tiers.items} cakes={cakes.items} deco={deco.items} fondants={fondants.items} onSubmit={handleSubmit} />                                                                             
     </div>

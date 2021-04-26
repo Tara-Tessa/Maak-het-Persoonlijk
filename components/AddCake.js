@@ -152,7 +152,7 @@ const AddCake = ({tiers, cakes, deco, fondants, onSubmit}) => {
       Message: e.target.message.value,
       tier: stateTiers,
       cake: stateCake,
-      decorations: stateDeco,
+      decorations: stateDeco.toString(),
       fondant: stateFondant,
     };
     onSubmit(data);

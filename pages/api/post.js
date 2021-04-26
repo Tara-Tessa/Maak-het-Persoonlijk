@@ -5,18 +5,18 @@ export default async (req, res) => {
   if (req.method === "POST") {
     try{
       const client = managementClient({
-        accessToken: process.env.CONTENTFUL_ACCES_KEY,
+        accessToken: process.env.CONTENTFUL_MANAGEMENT_KEY,
       });
 
       const response = client.getSpace(process.env.CONTENTFUL_SPACE_ID)
       .then((space) => space.getEnvironment(process.env.CONTENTFUL_ENV))
       .then((environment) => 
-      environment.createEngry("total", {
+      environment.createEntry("total", {
         fields: {
-          Title: {
+          title: {
             "en-US": req.body.input.Title
           },
-          Message: {
+          message: {
             "en-US": req.body.input.Message
           },
           cake: {
