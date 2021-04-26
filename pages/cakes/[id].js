@@ -128,6 +128,17 @@ export const getStaticProps = async ({params}) => {
         'sys.id' : params.id
     })
 
+/*     console.log(items);
+
+    if (!items.length) {
+      return {
+        redirect: {
+          destination: '/',
+          permanent: false
+        }
+      }
+    } */
+
     return {
         props: { cake: items[0]},
         revalidate: 1
