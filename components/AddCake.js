@@ -155,6 +155,7 @@ const AddCake = ({tiers, cakes, deco, fondants, onSubmit}) => {
       decorations: stateDeco.toString(),
       fondant: stateFondant,
     };
+    e.target.reset();
     onSubmit(data);
   };
 

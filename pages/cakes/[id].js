@@ -9,6 +9,11 @@ const Cake = (cake) => {
     const [meringue, setMeringue] = useState("");
     const [icing, setIcing] = useState("");
     const [buttercream, setButtercream] = useState("");
+    const [text, setText] =useState("Click to copy and send it to your Birthday Friend!")
+
+    const changeText = () => {
+      setText("Successfully copied!");
+    }
 
     console.log(cake)
 
@@ -85,11 +90,12 @@ const Cake = (cake) => {
             <div className={styles.text}>
             <h2 className={styles.title}>{cake.cake.fields.title}</h2>
             <p className={styles.message}>{cake.cake.fields.message}</p>
-            <p className={styles.clickcopy}>Click to copy and send it to your Birthday Friend!</p>
+            <p className={styles.clickcopy}>{text}</p>
             <div className={styles.link}>
             <a href="javascript:void(0)"
          onClick={() => {
            copy(`https://maak-het-persoonlijk-lime.vercel.app/cakes/${cake.cake.sys.id}`)
+           changeText()
          }} >{`https://maak-het-persoonlijk-lime.vercel.app/cakes/${cake.cake.sys.id}`}</a>
          </div>
             </div>
