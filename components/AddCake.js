@@ -4,10 +4,9 @@ import AddTier from "./AddTier";
 import AddInnerCake from "./AddInnerCake";
 import AddDecoration from "./AddDecoration";
 import AddFondant from "./AddFondant";
+import { useRouter } from 'next/router'
 
-const AddCake = ({tiers, cakes, deco, fondants, onSubmit}) => {
-
-
+const AddCake = ({total, tiers, cakes, deco, fondants, onSubmit}) => {
   const [stateTiers, setTiers] = useState("");
   const [stateCake, setCake] = useState("");
   const [stateDeco, setDeco] = useState([]);
@@ -16,6 +15,8 @@ const AddCake = ({tiers, cakes, deco, fondants, onSubmit}) => {
   const [meringue, setMeringue] = useState("");
   const [icing, setIcing] = useState("");
   const [buttercream, setButtercream] = useState("");
+
+  const router = useRouter();
 
   const changeClasses = (value) => {
     if (stateDeco) {
@@ -157,6 +158,7 @@ const AddCake = ({tiers, cakes, deco, fondants, onSubmit}) => {
     };
     e.target.reset();
     onSubmit(data);
+    //router.push('/cakes/:id')
   };
 
     return ( 
