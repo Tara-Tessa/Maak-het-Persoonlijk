@@ -7,7 +7,7 @@ export default function Layout() {
     <>
     <Head>
         <title>Make it Personal</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/icon.svg" />
       </Head>
 
 
