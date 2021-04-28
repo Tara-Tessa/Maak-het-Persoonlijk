@@ -5,72 +5,33 @@ import AddInnerCake from "./AddInnerCake";
 import AddDecoration from "./AddDecoration";
 import AddFondant from "./AddFondant";
 import { useRouter } from 'next/router'
+import ChangeClass from "./ChangeClass";
 
 const AddCake = ({total, tiers, cakes, deco, fondants, onSubmit}) => {
   const [stateTiers, setTiers] = useState("");
   const [stateCake, setCake] = useState("");
   const [stateDeco, setDeco] = useState([]);
   const [stateFondant, setFondant] = useState("");
+  const [stateValue, setValue] = useState("");
+
   const [candles, setCandles] = useState("");
   const [meringue, setMeringue] = useState("");
   const [icing, setIcing] = useState("");
   const [buttercream, setButtercream] = useState("");
 
-  const router = useRouter();
+  //const router = useRouter();
 
-  const changeClasses = (value) => {
-    if (stateDeco) {
-    const deco = value
-    if (deco == "Candles"){
-      if (stateTiers == "Straight"){
+    const handleTierChange = (value) => {
+      setTiers(value);
+
+      if (stateDeco.includes("Candles")){
+        if (value == "Straight"){
         setCandles("candles_straight");
       } else {
         setCandles("candles_stairs");
       }
-    } else if (deco.includes("Meringue")){
-      if (stateTiers == "Straight" && deco== "Meringue with Strawberries"){
-        setMeringue("meringuewithstrawberries_straight");
-      } else if (stateTiers == "Straight" && deco== "Meringue with Cherries"){
-        setMeringue("meringuewithcherries_straight");
-      } else if (stateTiers == "Stairs" && deco== "Meringue with Strawberries"){
-        setMeringue("meringuewithstrawberries_stairs");
-      } else {
-        setMeringue("meringuewithcherries_stairs");
       }
-    } else if (deco == "Icing") {
-      if (stateTiers == "Stairs") {
-        if (stateFondant == "Pistachio") {
-          setIcing("icing_pistachio_stairs");
-        } else if (stateFondant == "Blueberry") {
-          setIcing("icing_blueberry_stairs");
-        } else if (stateFondant == "Vanilla") {
-          setIcing("icing_vanilla_stairs");
-        } else if (stateFondant == "Strawberry") {
-          setIcing("icing_strawberry_stairs");
-        } else {
-          setIcing("icing_chocolate_stairs");
-        }
-      } else {
-        if (stateFondant == "Pistachio") {
-          setIcing("icing_pistachio_straight");
-        } else if (stateFondant == "Blueberry") {
-          setIcing("icing_blueberry_straight");
-        } else if (stateFondant == "Vanilla") {
-          setIcing("icing_vanilla_straight");
-        } else if (stateFondant == "Strawberry") {
-          setIcing("icing_strawberry_straight");
-        } else {
-          setIcing("icing_chocolate_straight");
-        }
-      }
-    } else if (deco == "Butter Cream") {
-      setButtercream("buttercream");
-    }
-  }
-  }
-    const handleTierChange = (value) => {
-      setTiers(value);
-      console.log(value);
+
       if (candles) {
         if (value == "Straight"){
         setCandles("candles_straight");
@@ -80,7 +41,6 @@ const AddCake = ({total, tiers, cakes, deco, fondants, onSubmit}) => {
       } 
       
       if (meringue) {
-        //console.log(meringue);
         if (value == "Straight" && meringue=="meringuewithstrawberries_stairs"){
         setMeringue("meringuewithstrawberries_straight");
       } else if (value == "Straight" && meringue=="meringuewithcherries_stairs"){
@@ -93,7 +53,6 @@ const AddCake = ({total, tiers, cakes, deco, fondants, onSubmit}) => {
       } 
       
       if (icing){
-        console.log(icing.split("_")[2]);
         const icing_tier = icing.split("_")[2];
         const icing_color = icing.split("_")[1];
         if (value == "Straight" && icing_tier == "stairs"){
@@ -106,20 +65,19 @@ const AddCake = ({total, tiers, cakes, deco, fondants, onSubmit}) => {
     }
 
     const handleCakeChange = (value) => {
-      setCake(value)
-      changeClasses(value);
+      setCake(value);
+      setValue(value);
     }
 
     const handleDecoChange = (value) => {
       const tmp = [...stateDeco];
+      setValue(value);
         if(tmp.includes("Meringue with Cherries") && value == "Meringue with Strawberries") {
-          console.log("Cherries already in");
           const index = tmp.indexOf("Meringue with Cherries");
           tmp.splice(index,1);
           tmp.push(value);
           setDeco(tmp);
         } else if (tmp.includes("Meringue with Strawberries") && value == "Meringue with Cherries"){
-          console.log("Strawberries already in");
           const index = tmp.indexOf("Meringue with Strawberries");
           tmp.splice(index,1);
           tmp.push(value);
@@ -133,16 +91,15 @@ const AddCake = ({total, tiers, cakes, deco, fondants, onSubmit}) => {
             tmp.splice(index,1);
             setDeco(tmp);
           }
-          changeClasses(value);
         }
     }
 
     const handleFondantChange = (value) => {
       setFondant(value);
-      changeClasses(value);
-      console.log(value);
+      setValue(value);
+      console.log(icing)
       if (icing){
-          setIcing(`icing_${value.replace(/\s+/g, '').toLowerCase()}_straight`);
+          setIcing(`icing_${value.replace(/\s+/g, '').toLowerCase()}_${stateTiers.replace(/\s+/g, '').toLowerCase()}`);
       }
     }
 
@@ -182,18 +139,7 @@ const AddCake = ({total, tiers, cakes, deco, fondants, onSubmit}) => {
         <AddFondant fondants={fondants} value={stateFondant} onValueChange={(value) => handleFondantChange(value)}/>
         <button type="submit" value="Send">Send</button>
       </form>
-        <div className={styles.plateau}>
-          <div className={styles.container}>
-          <div className={styles[stateFondant.replace(/\s+/g, '').toLowerCase()]}></div>
-          <div className={styles[stateTiers.replace(/\s+/g, '').toLowerCase()]}></div>
-          <div className={styles[stateCake.replace(/\s+/g, '').toLowerCase()]}></div>
-          <div className={styles[meringue]}></div>
-          <div className={styles[icing]}></div>
-          <div className={styles[candles]}></div>
-          <div className={styles[buttercream]}></div>
-          </div>
-        </div>
-        
+      <ChangeClass stateValue={stateValue} stateDeco={stateDeco} stateTiers={stateTiers} stateCake={stateCake} stateFondant={stateFondant} candles={candles} meringue={meringue} icing={icing} buttercream={buttercream} setCandles={(candles) => setCandles(candles)} setMeringue={(meringue) => setMeringue(meringue)} setIcing={(icing) => setIcing(icing)} setButtercream={(buttercream) => setButtercream(buttercream)} />
         </div>
      );
 }

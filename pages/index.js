@@ -9,7 +9,7 @@ import Link from "next/link";
 export default function Home({data, tiers, cakes, deco, fondants}) {
   const [totals, setTotals] = useState(data);
   //console.log(totals, tiers, cakes, deco, fondants);
-  console.log(totals)
+  //console.log(totals)
 
   const handleSubmit = async (input) => {
     console.log(input);
