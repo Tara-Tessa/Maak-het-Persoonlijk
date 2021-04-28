@@ -6,7 +6,7 @@ import copy from 'copy-to-clipboard'
 import Skeleton from "../../components/Skeleton";
 
 const Cake = (cake) => {
-  if (!cake) return <Skeleton/>
+  if (!cake.cake) return <Skeleton/>
 
     const [candles, setCandles] = useState("");
     const [meringue, setMeringue] = useState("");
