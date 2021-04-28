@@ -31,6 +31,9 @@ export default async (req, res) => {
           tier: {
             "en-US": req.body.input.tier
           },
+          nanoid: {
+            "en-US": req.body.input.nanoid
+          },
         },
       })).then((entry) => entry.publish());
 

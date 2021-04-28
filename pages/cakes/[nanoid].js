@@ -97,9 +97,9 @@ const Cake = (cake) => {
             <div className={styles.link}>
             <a href="javascript:void(0)"
          onClick={() => {
-           copy(`https://maak-het-persoonlijk-lime.vercel.app/cakes/${cake.cake.sys.id}`)
+           copy(`https://maak-het-persoonlijk-lime.vercel.app/cakes/${cake.cake.fields.nanoid}`)
            changeText()
-         }} >{`https://maak-het-persoonlijk-lime.vercel.app/cakes/${cake.cake.sys.id}`}</a>
+         }} >{`https://maak-het-persoonlijk-lime.vercel.app/cakes/${cake.cake.fields.nanoid}`}</a>
          </div>
             </div>
         </div>
@@ -119,7 +119,7 @@ export const getStaticPaths = async () => {
 
   const paths = r.items.map(item => {
       return {
-          params: {id: item.sys.id}
+          params: {nanoid: item.fields.nanoid}
       }
   })
 
@@ -132,7 +132,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async ({params}) => {
     const {items} = await client.getEntries({
         content_type: 'total',
-        'sys.id' : params.id
+        'fields.nanoid' : params.nanoid
     })
 
     console.log(items);
