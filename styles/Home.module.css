@@ -48,6 +48,7 @@
   font-style: normal;
   font-size: 4rem;
   color: #ff3962;
+  z-index: 10;
 }
 
 .title,
