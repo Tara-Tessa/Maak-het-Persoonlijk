@@ -2,10 +2,24 @@ import React, { useState, useEffect } from 'react';
 import styles from "./AddCake.module.css";
 
 const ChangeClass = ({stateValue, stateFondant, stateCake, stateTiers, stateDeco, candles, meringue, icing, buttercream, setCandles, setMeringue, setIcing, setButtercream}) => {
+    
+  const [deco, setDeco] = useState("");
+  
+  console.log(stateDeco)
   
     if (stateDeco) {
-    const deco = stateValue
     useEffect(() => {
+      if (stateDeco.length > 1) {
+        stateDeco.map(item => {
+          setDeco(item);
+        })
+      } else {
+        setDeco(stateValue);
+      }
+      
+      console.log(deco);
+   
+    
     if (deco == "Candles"){
       if (stateTiers == "Straight"){
         setCandles("candles_straight");
