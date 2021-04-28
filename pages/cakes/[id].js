@@ -3,8 +3,11 @@ import styles from "./cake.module.css";
 import React, { useState, useEffect } from 'react';
 import Layout from "../../components/layout";
 import copy from 'copy-to-clipboard'
+import Skeleton from "../../components/Skeleton";
 
 const Cake = (cake) => {
+  if (!cake) return <Skeleton/>
+
     const [candles, setCandles] = useState("");
     const [meringue, setMeringue] = useState("");
     const [icing, setIcing] = useState("");
@@ -122,7 +125,7 @@ export const getStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false
+    fallback: true
   };
 }
 
