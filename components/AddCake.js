@@ -13,7 +13,7 @@ const AddCake = ({total, tiers, cakes, deco, fondants, onSubmit}) => {
   const [stateCake, setCake] = useState("");
   const [stateDeco, setDeco] = useState([]);
   const [stateFondant, setFondant] = useState("");
-  const [stateValue, setValue] = useState("");
+  const [stateValue, setValue] = useState("start");
 
   const [candles, setCandles] = useState("");
   const [meringue, setMeringue] = useState("");

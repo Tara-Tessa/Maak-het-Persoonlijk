@@ -3,40 +3,43 @@ import styles from "./AddCake.module.css";
 
 const ChangeClass = ({stateValue, stateFondant, stateCake, stateTiers, stateDeco, candles, meringue, icing, buttercream, setCandles, setMeringue, setIcing, setButtercream}) => {
     
-  const [deco, setDeco] = useState("");
+  const [deco, setDeco] = useState(["start"]);
   
-  console.log(stateDeco)
   
     if (stateDeco) {
     useEffect(() => {
-      if (stateDeco.length > 1) {
-        stateDeco.map(item => {
-          setDeco(item);
-        })
-      } else {
-        setDeco(stateValue);
-      }
-      
       console.log(deco);
+
+      if (stateValue.length < 1) {
+        console.log(stateDeco);
+        setDeco(stateDeco);
+        console.log(deco);
+      } else {
+        const tmp = stateValue;
+        setDeco(tmp);
+      }
    
     
-    if (deco == "Candles"){
+    if (deco.includes("Candles")){
       if (stateTiers == "Straight"){
         setCandles("candles_straight");
       } else {
         setCandles("candles_stairs");
       }
-    } else if (deco.includes("Meringue")){
-      if (stateTiers == "Straight" && deco== "Meringue with Strawberries"){
+    } 
+    
+    if (deco.includes("Meringue")){
+      if (stateTiers == "Straight" && deco.includes("Meringue with Strawberries")){
         setMeringue("meringuewithstrawberries_straight");
-      } else if (stateTiers == "Straight" && deco== "Meringue with Cherries"){
+      } else if (stateTiers == "Straight" && deco.includes("Meringue with Cherries")){
         setMeringue("meringuewithcherries_straight");
-      } else if (stateTiers == "Stairs" && deco== "Meringue with Strawberries"){
+      } else if (stateTiers == "Stairs" && deco.includes("Meringue with Strawberries")){
         setMeringue("meringuewithstrawberries_stairs");
       } else {
         setMeringue("meringuewithcherries_stairs");
       }
-    } else if (deco == "Icing") {
+    } 
+    if (deco.includes("Icing")) {
       if (stateTiers == "Stairs") {
         if (stateFondant == "Pistachio") {
           setIcing("icing_pistachio_stairs");
@@ -62,7 +65,8 @@ const ChangeClass = ({stateValue, stateFondant, stateCake, stateTiers, stateDeco
           setIcing("icing_chocolate_straight");
         }
       }
-    } else if (deco == "Butter Cream") {
+    } 
+    if (deco.includes("Butter Cream")) {
       setButtercream("buttercream");
     }
   })

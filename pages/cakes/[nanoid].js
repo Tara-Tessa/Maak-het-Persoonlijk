@@ -1,6 +1,6 @@
 import { createClient as deliveryClient } from "contentful";
 import styles from "./cake.module.css";
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Layout from "../../components/layout";
 import copy from 'copy-to-clipboard'
 import Skeleton from "../../components/Skeleton";
@@ -24,7 +24,7 @@ const Cake = (cake) => {
     const stateFondant = cake.cake.fields.fondant;
     const stateCake = cake.cake.fields.cake;
     const decoration = cake.cake.fields.decorations;
-    const stateDeco = decoration.split(",");
+    const stateDeco = decoration/* .split(","); */
     const [stateValue, setValue] = useState("");
     
     return ( 
