@@ -119,7 +119,7 @@ const AddCake = ({total, tiers, cakes, deco, fondants, onSubmit}) => {
     };
     e.target.reset();
     onSubmit(data);
-    router.push('/cakes/success');
+    router.push('/cakes/success', data);
   };
 
     return ( 
