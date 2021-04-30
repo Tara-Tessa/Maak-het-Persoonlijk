@@ -30,7 +30,7 @@ export default function Home({data, tiers, cakes, deco, fondants}) {
   return (
     <div className={styles.container}>
       <Layout/>
-      <AddCake total={data} tiers={tiers.items} cakes={cakes.items} deco={deco.items} fondants={fondants.items} onSubmit={handleSubmit} />                                                                             
+      <AddCake total={data} tiers={tiers.items} cakes={cakes.items} deco={deco.items} fondants={fondants.items} onSubmit={handleSubmit}/>                                                                             
       <div className={styles.previous}>
       {data.items.map(total => (
         <Link key={total.sys.id} href={`/cakes/${total.fields.nanoid}`}>

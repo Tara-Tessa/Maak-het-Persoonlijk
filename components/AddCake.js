@@ -1,12 +1,13 @@
 import styles from "./AddCake.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AddTier from "./AddTier";
 import AddInnerCake from "./AddInnerCake";
 import AddDecoration from "./AddDecoration";
 import AddFondant from "./AddFondant";
-import { useRouter } from 'next/router'
 import ChangeClass from "./ChangeClass";
 import { nanoid } from 'nanoid'
+import { useRouter } from 'next/router'
+import { route } from "next/dist/next-server/server/router";
 
 const AddCake = ({total, tiers, cakes, deco, fondants, onSubmit}) => {
   const [stateTiers, setTiers] = useState("");
@@ -21,6 +22,7 @@ const AddCake = ({total, tiers, cakes, deco, fondants, onSubmit}) => {
   const [buttercream, setButtercream] = useState("");
 
   const router = useRouter();
+  const id = nanoid();
 
     const handleTierChange = (value) => {
       setTiers(value);
@@ -104,7 +106,7 @@ const AddCake = ({total, tiers, cakes, deco, fondants, onSubmit}) => {
       }
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
     e.preventDefault();
     const data = {
       Title: e.target.title.value,
@@ -113,17 +115,16 @@ const AddCake = ({total, tiers, cakes, deco, fondants, onSubmit}) => {
       cake: stateCake,
       decorations: stateDeco.toString(),
       fondant: stateFondant,
-      nanoid: nanoid(),
+      nanoid: id,
     };
     e.target.reset();
     onSubmit(data);
-    console.log(nanoid());
-    router.push(`/cakes/:${nanoid()}`)
+    router.push('/cakes/success');
   };
 
     return ( 
         <div className={styles.addCake}>
-        <form onSubmit={(e) => handleSubmit(e)}>
+        <form onSubmit={(e) => handleSubmit(e)}> 
         <div className={styles.form}>
         <label className={styles.text}>
           Title:

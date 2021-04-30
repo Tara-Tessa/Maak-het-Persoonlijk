@@ -395,3 +395,13 @@
     font-style: normal;
     font-size: 0.7rem;
 }
+
+.success{
+font-family: lust-script-fine, sans-serif;
+  font-weight: 100;
+  font-style: normal;
+  font-size: 2rem;
+  color: #4fdfea;
+  text-align: center;
+  transform: translateY(-3rem);
+}
