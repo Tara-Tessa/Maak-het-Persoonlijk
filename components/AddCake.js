@@ -118,8 +118,9 @@ const AddCake = ({total, tiers, cakes, deco, fondants, onSubmit}) => {
       nanoid: id,
     };
     e.target.reset();
-    onSubmit(data);
-    router.push('/cakes/success', data);
+    const res = onSubmit(data);
+    await res;
+    router.push('/cakes/success', res);
   };
 
     return ( 
