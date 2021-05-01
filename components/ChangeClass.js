@@ -4,8 +4,6 @@ import styles from "./AddCake.module.css";
 const ChangeClass = ({stateValue, stateFondant, stateCake, stateTiers, stateDeco, candles, meringue, icing, buttercream, setCandles, setMeringue, setIcing, setButtercream}) => {
     
   const [deco, setDeco] = useState(["start"]);
-
-  console.log(stateFondant);
   
     if (stateDeco) {
     useEffect(() => {
@@ -76,13 +74,27 @@ const ChangeClass = ({stateValue, stateFondant, stateCake, stateTiers, stateDeco
     return ( 
         <div className={styles.plateau}>
           <div className={styles.container}>
-          <div className={styles[stateFondant.replace(/\s+/g, '').toLowerCase()]}></div>
-          <div className={styles[stateTiers.replace(/\s+/g, '').toLowerCase()]}></div>
-          <div className={styles[stateCake.replace(/\s+/g, '').toLowerCase()]}></div>
+           {stateFondant &&
+            <div className={styles[stateFondant.replace(/\s+/g, '').toLowerCase()]}></div> 
+            }
+            {stateTiers &&
+            <div className={styles[stateTiers.replace(/\s+/g, '').toLowerCase()]}></div> 
+            }
+            {stateCake &&
+            <div className={styles[stateCake.replace(/\s+/g, '').toLowerCase()]}></div> 
+            }
+            {meringue &&
           <div className={styles[meringue]}></div>
+            }
+            {icing &&
           <div className={styles[icing]}></div>
+            }
+            {candles &&
           <div className={styles[candles]}></div>
+            }
+            {buttercream &&
           <div className={styles[buttercream]}></div>
+            }
           </div>
         </div>
      );
