@@ -7,7 +7,7 @@ import AddFondant from "./AddFondant";
 import ChangeClass from "./ChangeClass";
 import { nanoid } from 'nanoid'
 import { useRouter } from 'next/router'
-import { route } from "next/dist/next-server/server/router";
+
 
 const AddCake = ({total, tiers, cakes, deco, fondants, onSubmit}) => {
   const [stateTiers, setTiers] = useState("");
@@ -120,7 +120,11 @@ const AddCake = ({total, tiers, cakes, deco, fondants, onSubmit}) => {
     e.target.reset();
     const res = onSubmit(data);
     await res;
-    router.push('/cakes/success', res);
+    console.log(res);
+    router.push({
+      pathname: '/cakes/success',
+      query: data 
+      });
   };
 
     return ( 

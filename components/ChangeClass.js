@@ -4,16 +4,17 @@ import styles from "./AddCake.module.css";
 const ChangeClass = ({stateValue, stateFondant, stateCake, stateTiers, stateDeco, candles, meringue, icing, buttercream, setCandles, setMeringue, setIcing, setButtercream}) => {
     
   const [deco, setDeco] = useState(["start"]);
-  
+
+  console.log(stateFondant);
   
     if (stateDeco) {
     useEffect(() => {
-      console.log(deco);
+      //console.log(deco);
 
       if (stateValue.length < 1) {
-        console.log(stateDeco);
+        //console.log(stateDeco);
         setDeco(stateDeco);
-        console.log(deco);
+        //console.log(deco);
       } else {
         const tmp = stateValue;
         setDeco(tmp);

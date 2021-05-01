@@ -1,13 +1,21 @@
 import { createClient as deliveryClient } from "contentful";
-import React, { useState } from 'react';
+import React, { useDebugValue, useState, useEffect } from 'react';
 import styles from "./cake.module.css";
 import Layout from "../../components/layout";
 import copy from 'copy-to-clipboard';
 import ChangeClass from "../../components/ChangeClass";
+import { useRouter } from 'next/router';
+import { route } from "next/dist/next-server/server/router";
 
-const success = (data) => {
+const success = () => {
+    const router = useRouter()
+    const [cake, setCake] = useState({});
 
-    const cake = data.data.items[0];
+    useEffect(() => {
+      if (router.isReady){
+      setCake(router.query);
+    }
+    })
 
     console.log(cake);
 
@@ -22,10 +30,10 @@ const success = (data) => {
     }
 
 
-    const stateTiers = cake.fields.tier;
-    const stateFondant = cake.fields.fondant;
-    const stateCake = cake.fields.cake;
-    const decoration = cake.fields.decorations;
+    const stateTiers = cake.tier;
+    const stateFondant = cake.fondant;
+    const stateCake = cake.cake;
+    const decoration = cake.decorations;
     const stateDeco = decoration;
     const [stateValue, setValue] = useState("");
 
@@ -36,15 +44,15 @@ const success = (data) => {
             <div className={styles.detail}>
             <ChangeClass stateValue={stateValue} stateDeco={stateDeco} stateTiers={stateTiers} stateCake={stateCake} stateFondant={stateFondant} candles={candles} meringue={meringue} icing={icing} buttercream={buttercream} setCandles={(candles) => setCandles(candles)} setMeringue={(meringue) => setMeringue(meringue)} setIcing={(icing) => setIcing(icing)} setButtercream={(buttercream) => setButtercream(buttercream)} />
             <div className={styles.text}>
-            <h2 className={styles.title}>{cake.fields.title}</h2>
-            <p className={styles.message}>{cake.fields.message}</p>
+            <h2 className={styles.title}>{cake.title}</h2>
+            <p className={styles.message}>{cake.message}</p>
             <p className={styles.clickcopy}>{text}</p>
             <div className={styles.link}>
             <a
          onClick={() => {
-           copy(`https://maak-het-persoonlijk-lime.vercel.app/cakes/${cake.fields.nanoid}`)
+           copy(`https://maak-het-persoonlijk-lime.vercel.app/cakes/${cake.nanoid}`)
            changeText()
-         }} >{`https://maak-het-persoonlijk-lime.vercel.app/cakes/${cake.fields.nanoid}`}</a>
+         }} >{`https://maak-het-persoonlijk-lime.vercel.app/cakes/${cake.nanoid}`}</a>
          </div>
             </div>
         </div>
@@ -53,31 +61,3 @@ const success = (data) => {
 }
  
 export default success;
-
-
-export async function getStaticProps() {
-  // Get external data from the file system, API, DB, etc.
-
-  const client = deliveryClient({
-    accessToken: process.env.CONTENTFUL_ACCES_KEY,
-    space: process.env.CONTENTFUL_SPACE_ID,
-  });
-
-
-  const data = await client.getEntries({content_type: 'total'});
-
-  // The value of the `props` key will be
-  //  passed to the `Home` component
-    if (!data) {
-    return {
-      notFound: true,
-    }
-  }
-
-  return {
-    props: { 
-      data: data,
-      //revalidate: 1
-    }, // will be passed to the page component as props
-  }
-}
