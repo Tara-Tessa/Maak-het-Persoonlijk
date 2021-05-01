@@ -5,8 +5,9 @@ const ChangeClass = ({stateValue, stateFondant, stateCake, stateTiers, stateDeco
     
   const [deco, setDeco] = useState(["start"]);
   
-    if (stateDeco) {
+    
     useEffect(() => {
+      if (stateDeco) {
       //console.log(deco);
 
       if (stateValue.length < 1) {
@@ -68,8 +69,9 @@ const ChangeClass = ({stateValue, stateFondant, stateCake, stateTiers, stateDeco
     if (deco.includes("Butter Cream")) {
       setButtercream("buttercream");
     }
+    }
   })
-  }
+  
 
     return ( 
         <div className={styles.plateau}>
