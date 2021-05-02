@@ -7,9 +7,6 @@ import { createClient as deliveryClient } from "contentful";
 import Link from "next/link";
 
 export default function Home({data, tiers, cakes, deco, fondants}) {
-  const [totals, setTotals] = useState(data);
-  //console.log(totals, tiers, cakes, deco, fondants);
-  //console.log(totals)
 
   const handleSubmit = async (input) => {
     console.log(input);
@@ -23,7 +20,6 @@ export default function Home({data, tiers, cakes, deco, fondants}) {
         body: JSON.stringify({input}),
       });
       const d = await response.json();
-      console.log(d);
     }
   };
   
@@ -46,7 +42,6 @@ export default function Home({data, tiers, cakes, deco, fondants}) {
 }
 
 export async function getStaticProps() {
-  // Get external data from the file system, API, DB, etc.
 
   const client = deliveryClient({
     accessToken: process.env.CONTENTFUL_ACCES_KEY,
@@ -64,8 +59,6 @@ export async function getStaticProps() {
 
   const fondants = await client.getEntries({content_type: 'fondant'});
 
-  // The value of the `props` key will be
-  //  passed to the `Home` component
     if (!data) {
     return {
       notFound: true,
@@ -79,7 +72,6 @@ export async function getStaticProps() {
       cakes: cakes,
       deco: deco,
       fondants: fondants,
-      //revalidate: 1
-    }, // will be passed to the page component as props
+    },
   }
 }
