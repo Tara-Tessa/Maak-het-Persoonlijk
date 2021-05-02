@@ -17,7 +17,7 @@ const success = () => {
     }
     })
 
-    console.log(cake);
+    console.log(cake.Title);
 
     const [candles, setCandles] = useState("");
     const [meringue, setMeringue] = useState("");
@@ -44,8 +44,8 @@ const success = () => {
             <div className={styles.detail}>
             <ChangeClass stateValue={stateValue} stateDeco={stateDeco} stateTiers={stateTiers} stateCake={stateCake} stateFondant={stateFondant} candles={candles} meringue={meringue} icing={icing} buttercream={buttercream} setCandles={(candles) => setCandles(candles)} setMeringue={(meringue) => setMeringue(meringue)} setIcing={(icing) => setIcing(icing)} setButtercream={(buttercream) => setButtercream(buttercream)} />
             <div className={styles.text}>
-            <h2 className={styles.title}>{cake.title}</h2>
-            <p className={styles.message}>{cake.message}</p>
+            <h2 className={styles.title}>{cake.Title}</h2>
+            <p className={styles.message}>{cake.Message}</p>
             <p className={styles.clickcopy}>{text}</p>
             <div className={styles.link}>
             <a
