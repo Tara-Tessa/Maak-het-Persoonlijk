@@ -9,7 +9,6 @@ import Link from "next/link";
 export default function Home({data, tiers, cakes, deco, fondants}) {
 
   const handleSubmit = async (input) => {
-    console.log(input);
     if(input) {
       const response = await fetch(`/api/post`, 
       {
