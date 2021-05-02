@@ -8,12 +8,9 @@ const ChangeClass = ({stateValue, stateFondant, stateCake, stateTiers, stateDeco
     
     useEffect(() => {
       if (stateDeco) {
-      //console.log(deco);
 
       if (stateValue.length < 1) {
-        //console.log(stateDeco);
         setDeco(stateDeco);
-        //console.log(deco);
       } else {
         const tmp = stateValue;
         setDeco(tmp);

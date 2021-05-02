@@ -1,5 +1,5 @@
 import styles from "./AddCake.module.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import AddTier from "./AddTier";
 import AddInnerCake from "./AddInnerCake";
 import AddDecoration from "./AddDecoration";

@@ -2,7 +2,6 @@ import Image from 'next/image'
 import styles from './global.module.css'
 
 const AddInnerCake = ({cakes, value, onValueChange}) => {
-  //console.log(cakes)
     return ( 
         <div>
           {cakes.map(cake => (

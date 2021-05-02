@@ -1,11 +1,9 @@
-import { createClient as deliveryClient } from "contentful";
-import React, { useDebugValue, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from "./cake.module.css";
 import Layout from "../../components/layout";
 import copy from 'copy-to-clipboard';
 import ChangeClass from "../../components/ChangeClass";
 import { useRouter } from 'next/router';
-import { route } from "next/dist/next-server/server/router";
 
 const success = () => {
     const router = useRouter()
@@ -16,8 +14,6 @@ const success = () => {
       setCake(router.query);
     }
     })
-
-    console.log(cake.Title);
 
     const [candles, setCandles] = useState("");
     const [meringue, setMeringue] = useState("");
@@ -37,6 +33,8 @@ const success = () => {
     const stateDeco = decoration;
     const [stateValue, setValue] = useState("");
 
+    const url = `https://maak-het-persoonlijk-lime.vercel.app/cakes/${cake.nanoid}`;
+
     return ( 
         <div className={styles.container}>
             <Layout />
@@ -50,9 +48,9 @@ const success = () => {
             <div className={styles.link}>
             <a
          onClick={() => {
-           copy(`https://maak-het-persoonlijk-lime.vercel.app/cakes/${cake.nanoid}`)
+           copy(url)
            changeText()
-         }} >{`https://maak-het-persoonlijk-lime.vercel.app/cakes/${cake.nanoid}`}</a>
+         }} >{url}</a>
          </div>
             </div>
         </div>

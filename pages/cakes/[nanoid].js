@@ -23,9 +23,10 @@ const Cake = (cake) => {
     const stateTiers = cake.cake.fields.tier;
     const stateFondant = cake.cake.fields.fondant;
     const stateCake = cake.cake.fields.cake;
-    const decoration = cake.cake.fields.decorations;
-    const stateDeco = decoration/* .split(","); */
+    const stateDeco = cake.cake.fields.decorations;
     const [stateValue, setValue] = useState("");
+
+    const url = `https://maak-het-persoonlijk-lime.vercel.app/cakes/${cake.cake.fields.nanoid}`;
     
     return ( 
         <div className={styles.container}>
@@ -39,9 +40,9 @@ const Cake = (cake) => {
             <div className={styles.link}>
             <a
          onClick={() => {
-           copy(`https://maak-het-persoonlijk-lime.vercel.app/cakes/${cake.cake.fields.nanoid}`)
+           copy(url)
            changeText()
-         }} >{`https://maak-het-persoonlijk-lime.vercel.app/cakes/${cake.cake.fields.nanoid}`}</a>
+         }} >{url}</a>
          </div>
             </div>
         </div>
